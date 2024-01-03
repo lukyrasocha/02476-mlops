@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "02476-mlops"
+name = "mlops_02476"
 version = "0.0.1"
 description = "Project to store code for the 02476 MLOps course at DTU"
 authors = [
@@ -15,7 +15,8 @@ requires-python = "~=3.10"
 dynamic = ["dependencies", "optional-dependencies"]
 
 [tool.setuptools]
-packages = ["02476-mlops"]
+packages = { find = { where = ["."] } }
+
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
