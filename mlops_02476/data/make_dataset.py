@@ -1,12 +1,12 @@
 import torch
 if __name__ == '__main__':
   # Get the data and process it
-  train_data = torch.load('data/raw/train_images_0.pt')
+  train_data = torch.load('data/raw/train_images_6.pt')
   # Standardize the data to have mean 0 and variance 1
   train_data = (train_data - train_data.mean()) / train_data.std()
 
   # Save the processed data
-  torch.save(train_data, 'data/processed/train_images_0.pt')
+  torch.save(train_data, 'data/processed/train_images_6.pt')
 
   print('Data processed.')
   print("Mean is: ", train_data.mean())
