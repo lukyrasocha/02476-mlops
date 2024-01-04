@@ -6,12 +6,6 @@ from models import FNN
 from data import load_dataset
 
 
-@click.group()
-def cli():
-  """Command line interface."""
-  pass
-
-
 @click.command()
 @click.option("--lr", default=1e-3, help="learning rate to use for training")
 def train(lr):
@@ -50,7 +44,5 @@ def train(lr):
   plt.savefig(f"reports/figures/loss_{time}.png")
 
 
-cli.add_command(train)
-
 if __name__ == "__main__":
-  cli()
+  train()
