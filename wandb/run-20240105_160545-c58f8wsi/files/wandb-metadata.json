@@ -1,0 +1,47 @@
+{
+    "os": "macOS-10.16-x86_64-i386-64bit",
+    "python": "3.10.4",
+    "heartbeatAt": "2024-01-05T15:05:46.598368",
+    "startedAt": "2024-01-05T15:05:45.756457",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--lr=0.1"
+    ],
+    "state": "running",
+    "program": "/Users/lurax/Library/CloudStorage/OneDrive-Personal/myWorkspace/school_code/dtu/1-semester/mlops_02476/mlops_02476/train_model.py",
+    "codePathLocal": "mlops_02476/train_model.py",
+    "codePath": "mlops_02476/train_model.py",
+    "git": {
+        "remote": "https://github.com/lukyrasocha/02476-mlops.git",
+        "commit": "d37829aff82c05a2f88024de1b59231e7e6506bd"
+    },
+    "email": "rasocha.lukas@gmail.com",
+    "root": "/Users/lurax/Library/CloudStorage/OneDrive-Personal/myWorkspace/school_code/dtu/1-semester/mlops_02476",
+    "host": "T5Q66X0M9T",
+    "username": "lurax",
+    "executable": "/Users/lurax/miniconda/envs/02476-mlops/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2400,
+        "min": 2400,
+        "max": 2400
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2400,
+            "min": 2400,
+            "max": 2400
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 460.4317207336426,
+            "used": 441.1776237487793
+        }
+    },
+    "memory": {
+        "total": 16.0
+    }
+}

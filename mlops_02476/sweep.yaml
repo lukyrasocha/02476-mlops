@@ -1,0 +1,8 @@
+program: mlops_02476/train_model.py
+method: random # You can choose grid, random, or bayesian
+metric:
+  name: loss
+  goal: minimize # You can choose minimize or maximize
+parameters:
+  lr:
+    values: [0.1, 0.01, 0.001]
