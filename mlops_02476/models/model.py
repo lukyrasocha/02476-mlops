@@ -5,24 +5,27 @@ from torch import nn
 
 
 class FNN(nn.Module):
-  """My awesome model."""
+    """My awesome model."""
 
-  def __init__(self):
-    super().__init__()
-    self.fc1 = nn.Linear(784, 128)
-    self.fc2 = nn.Linear(128, 64)
-    self.fc3 = nn.Linear(64, 10)
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(784, 128)
+        self.fc2 = nn.Linear(128, 64)
+        self.fc3 = nn.Linear(64, 10)
 
-  def forward(self, x):
-    """Forward pass of the model."""
-    x = x.view(x.shape[0], -1)
-    x = self.fc1(x)
-    x = nn.functional.relu(x)
-    x = self.fc2(x)
-    x = nn.functional.relu(x)
-    x = self.fc3(x)
-    x = nn.functional.log_softmax(x, dim=1)
-    return x
+    def forward(self, x):
+        """Forward pass of the model."""
+        # define forward pass
+        if x.shape[1] != 1 or x.shape[2] != 28 or x.shape[3] != 28:
+            raise ValueError('Expected each sample to have shape [1, 28, 28]')
+        x = x.view(x.shape[0], -1)
+        x = self.fc1(x)
+        x = nn.functional.relu(x)
+        x = self.fc2(x)
+        x = nn.functional.relu(x)
+        x = self.fc3(x)
+        x = nn.functional.log_softmax(x, dim=1)
+        return x
 
 
 ##############################
@@ -31,38 +34,41 @@ class FNN(nn.Module):
 
 
 class LightningFNN(pl.LightningModule):
-  def __init__(self):
-    super().__init__()
-    self.fc1 = nn.Linear(784, 128)
-    self.fc2 = nn.Linear(128, 64)
-    self.fc3 = nn.Linear(64, 10)
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(784, 128)
+        self.fc2 = nn.Linear(128, 64)
+        self.fc3 = nn.Linear(64, 10)
 
-  def forward(self, x):
-    # define forward pass
-    x = x.view(x.shape[0], -1)
-    x = self.fc1(x)
-    x = nn.functional.relu(x)
-    x = self.fc2(x)
-    x = nn.functional.relu(x)
-    x = self.fc3(x)
-    x = nn.functional.log_softmax(x, dim=1)
-    return x
+    def forward(self, x):
+        # define forward pass
+        if x.shape[1] != 1 or x.shape[2] != 28 or x.shape[3] != 28:
+            raise ValueError('Expected each sample to have shape [1, 28, 28]')
 
-  def training_step(self, batch, batch_idx):
-    # training step logic
-    x, y = batch
-    y_hat = self(x)
-    loss = F.cross_entropy(y_hat, y)
-    self.log('train_loss', loss)
-    return loss
+        x = x.view(x.shape[0], -1)
+        x = self.fc1(x)
+        x = nn.functional.relu(x)
+        x = self.fc2(x)
+        x = nn.functional.relu(x)
+        x = self.fc3(x)
+        x = nn.functional.log_softmax(x, dim=1)
+        return x
 
-  def validation_step(self, batch, batch_idx):
-    # validation step logic
-    x, y = batch
-    y_hat = self(x)
-    loss = F.cross_entropy(y_hat, y)
-    self.log('val_loss', loss)
+    def training_step(self, batch, batch_idx):
+        # training step logic
+        x, y = batch
+        y_hat = self(x)
+        loss = F.cross_entropy(y_hat, y)
+        self.log('train_loss', loss)
+        return loss
 
-  def configure_optimizers(self):
-    optimizer = Adam(self.parameters(), lr=1e-3)
-    return optimizer
+    def validation_step(self, batch, batch_idx):
+        # validation step logic
+        x, y = batch
+        y_hat = self(x)
+        loss = F.cross_entropy(y_hat, y)
+        self.log('val_loss', loss)
+
+    def configure_optimizers(self):
+        optimizer = Adam(self.parameters(), lr=1e-3)
+        return optimizer

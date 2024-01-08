@@ -4,4 +4,7 @@ matplotlib
 numpy
 rich
 pytorch-lightning
+pytest
 
+# Install local packages
+-e .
