@@ -1,4 +1,4 @@
-name: "Run tests"
+name: "Run tests on mac"
 
 on:
     push:
@@ -7,9 +7,8 @@ on:
         branches: [master, main]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-
+    test-macos:
+        runs-on: macos-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v2
